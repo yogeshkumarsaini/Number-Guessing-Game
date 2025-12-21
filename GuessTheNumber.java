@@ -7,25 +7,26 @@ public class GuessTheNumber {
         // 1. Initialize variables and utilities
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
-        
+        boolean playAgain = true;
         // Define the range for the random number (1 to 100)
         int minRange = 1;
         int maxRange = 100;
-        int numberToGuess = random.nextInt(maxRange - minRange + 1) + minRange;
         int userGuess = 0;
-        int attempts = 0;
-        boolean hasGuessedCorrectly = false;
 
         System.out.println("Welcome to the Number Guessing Game!");
         System.out.println("I have picked a number between " + minRange + " and " + maxRange + ".");
         System.out.println("Try to guess it!");
 
         // 2. The main game loop
+        while (playAgain) {
+            int numberToGuess = random.nextInt(maxRange - minRange + 1) + minRange;
+            int attempts = 0;
+            boolean hasGuessedCorrectly = false;
         while (!hasGuessedCorrectly) {
             System.out.print("Enter your guess: ");
             
-            // Validate input
-            if (scanner.hasNextInt()) {
+                // Validate input
+                if (scanner.hasNextInt()) {
                 userGuess = scanner.nextInt();
                 attempts++;
 
@@ -40,14 +41,20 @@ public class GuessTheNumber {
                     hasGuessedCorrectly = true;
                     System.out.println("Congratulations! You guessed the number " + numberToGuess + " correctly.");
                     System.out.println("It took you " + attempts + " attempts.");
+                    System.out.print("Do you want to play again? (yes/no): ");
+                scanner.nextLine(); // consume newline
+                String choice = scanner.nextLine();
+                    if (!choice.equalsIgnoreCase("yes")) {
+                   playAgain = false;
+                    }
                 }
-            } else {
+                } else {
                 System.out.println("Invalid input. Please enter an integer number.");
                 // Consume the invalid input to prevent an infinite loop
                 scanner.next(); 
             }
         }
-        
+    }
         // 4. Close the scanner resource
         scanner.close();
     }

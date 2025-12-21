@@ -9,6 +9,8 @@ A simple command-line Number Guessing Game written in Java. The program picks a 
 - Validates guesses and informs the user if they're out of range.
 - Gives hints: "Too low" or "Too high".
 - Counts and displays the number of attempts.
+- Allows replaying the game without restarting the program.
+- Allows replaying the game without restarting the program after a correct guess.
 
 ## Prerequisites
 
